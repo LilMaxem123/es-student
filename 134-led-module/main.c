@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "led.h"
 #include "log.h"
-
+#include "device.h"
 const uint DEBOUNCE_MS = 20;
 const uint BUTTON_PIN = 15;
 
@@ -38,7 +38,11 @@ void handle_command(int command)
     {
         log_version();
     }
-
+    else if (command == 'i')
+    {
+        device_info();
+    }
+    
     else
     {
         LOG_ERR("unknown command: %c\n", command);
