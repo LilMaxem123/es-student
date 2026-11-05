@@ -5,6 +5,7 @@
 #include "log.h"
 #include "device.h"
 #include <string.h>
+#include "memory.h"
 
 const uint DEBOUNCE_MS = 20;
 const uint BUTTON_PIN = 15;
@@ -55,6 +56,11 @@ void cmd_version(void)
     log_version();
 }
 
+void cmd_mem_info()
+{
+    mem_info();
+}
+
 // Handle a command entered by the user
 struct command_t
 {
@@ -72,7 +78,9 @@ const struct command_t commands[] = {
     { "disable", cmd_disable },
     { "info", cmd_info },
     { "version", cmd_version },
-    { "ping", cmd_ping }
+    { "ping", cmd_ping },
+    { "mem_info", cmd_mem_info },
+
 };
 
 
