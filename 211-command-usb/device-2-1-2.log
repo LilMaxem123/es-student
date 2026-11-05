@@ -3,30 +3,30 @@
 устройство: 2e8a:000a
 серийный номер: E6635898631D5D30
 порт: /dev/cu.usbmodem11301
-начало: 2026-11-05T22:11:08
+начало: 2026-11-05T23:35:37
    0.000 --> enable
-   0.124 <-- enable
-   0.124 <-- dbg read_line:115 got enable
-   0.125 <-- inf cmd_enable:38 led on
-   2.136 --> disable
-   2.285 <-- disable
-   2.285 <-- dbg read_line:115 got disable
-   2.286 <-- inf cmd_disable:45 led off
-   4.300 --> info
-   4.386 <-- info
-   4.386 <-- dbg read_line:115 got info
-   4.386 <-- project: 211-command-usb
-   4.387 <-- repo: https://github.com/LilMaxem123/es-student
-   4.388 <-- board: pico
-   4.388 <-- serial: E6635898631D5D30
-   4.389 <-- chip: manufacturer 0x927, part 0x0002, revision 2
-   4.389 <-- pico-sdk: 2.3.0
-   6.402 --> ping
-   6.486 <-- ping
-   6.487 <-- dbg read_line:115 got ping
-   6.487 <-- pong
-   8.499 --> nosuchcommand
-   8.767 <-- nosuchcommand
-   8.768 <-- dbg read_line:115 got nosuchcommand
-   8.769 <-- err handle_command:96 unknown command: nosuchcommand
+   0.129 <-- enable
+   0.129 <-- dbg read_line:123 got enable
+   0.130 <-- inf cmd_enable:39 led on
+   2.145 --> disable
+   2.290 <-- disable
+   2.290 <-- dbg read_line:123 got disable
+   2.291 <-- inf cmd_disable:46 led off
+   4.309 --> info
+   4.390 <-- info
+   4.391 <-- dbg read_line:123 got info
+   4.391 <-- project: 211-command-usb
+   4.392 <-- repo: https://github.com/LilMaxem123/es-student
+   4.392 <-- board: pico
+   4.392 <-- serial: E6635898631D5D30
+   4.393 <-- chip: manufacturer 0x927, part 0x0002, revision 2
+   4.393 <-- pico-sdk: 2.3.0
+   6.413 --> ping
+   6.511 <-- ping
+   6.512 <-- dbg read_line:123 got ping
+   6.512 <-- pong
+   8.523 --> nosuchcommand
+   8.792 <-- nosuchcommand
+   8.793 <-- dbg read_line:123 got nosuchcommand
+   8.793 <-- err handle_command:104 unknown command: nosuchcommand
 итог: отправлено команд 5, принято строк 20
