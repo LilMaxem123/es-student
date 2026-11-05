@@ -56,7 +56,7 @@ void cmd_version(void)
     log_version();
 }
 
-void cmd_mem_info()
+void cmd_mem_info(void)
 {
     mem_info();
 }
@@ -162,7 +162,6 @@ int main()
         
 
         read_line();
-    
 
 
 
