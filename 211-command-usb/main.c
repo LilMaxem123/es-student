@@ -1,0 +1,134 @@
+#include "pico/stdlib.h"
+#include "hardware/gpio.h"
+#include <stdio.h>
+#include "led.h"
+#include "log.h"
+#include "device.h"
+#include <string.h>
+
+const uint DEBOUNCE_MS = 20;
+const uint BUTTON_PIN = 15;
+
+// Define a buffer to hold the input line
+#define LINE_SIZE 32
+
+char line[LINE_SIZE];
+uint line_length = 0;
+
+
+
+bool get_button_debounce(uint pin){
+    
+    bool state = gpio_get(pin);
+    sleep_ms(DEBOUNCE_MS);
+    return state && gpio_get(pin);
+}
+
+void handle_command(const char *command)
+{
+    if (strcmp(command, "enable") == 0)
+    {
+        // включаем светодиод и сообщаем новое состояние
+        led_set(true);
+        LOG_INF("led %s\n", led_is_on() ? "on" : "off");
+    }
+    else if (strcmp(command, "disable") == 0)
+    {
+        // выключаем светодиод и сообщаем новое состояние
+        led_set(false);
+        LOG_INF("led %s\n", led_is_on() ? "on" : "off");
+    }
+    else if (strcmp(command, "info") == 0)
+    {
+        // печатаем паспорт устройства
+        device_info();
+    }
+    else if (strcmp(command, "version") == 0)
+    {
+        // печатаем строку журнала о версии прошивки
+        log_version();
+    }
+    else
+    {
+        LOG_ERR("unknown command: %s\n", command);
+    }
+}
+
+
+// Read a line of input from the user, handling backspace and enter keys
+
+void read_line(void)
+{
+    int symbol = getchar_timeout_us(0);
+
+    if (symbol == PICO_ERROR_TIMEOUT)
+    {
+        return;
+    }
+
+    if (symbol == '\r' || symbol == '\n')
+    {
+        putchar('\n');
+        line[line_length] = '\0';
+
+        if (line_length > 0)
+        {
+            LOG_DBG("got %s\n", line);
+            handle_command(line);
+        }
+
+        line_length = 0;
+        return;
+    }
+
+    if (line_length + 1 < LINE_SIZE)
+    {
+        line[line_length] = (char)symbol;
+        line_length = line_length + 1;
+        putchar(symbol);
+    }
+}
+
+void set_led(bool on)
+{
+    led_set(on);
+    LOG_INF("led %s\n", led_is_on() ? "on" : "off");
+}
+
+
+
+
+int main()
+{
+    stdio_init_all();
+    gpio_init(BUTTON_PIN);
+    gpio_set_dir(BUTTON_PIN, GPIO_IN);
+    gpio_pull_up(BUTTON_PIN);
+    
+    led_init();
+    led_set(false); 
+
+    
+    
+    bool led = false;
+    bool previous = false;
+
+    while (1)
+    {   
+        bool current = get_button_debounce(BUTTON_PIN);
+
+        if (previous == true && current == false)
+        {
+            previous = current;
+            led_toggle();
+            LOG_INF("led %s\n", led_is_on() ? "on" : "off");
+        }
+        
+
+        read_line();
+    
+
+
+
+    }
+}

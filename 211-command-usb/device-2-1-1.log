@@ -1,0 +1,28 @@
+задание: 2.1.1
+проект: 211-command-usb
+устройство: 2e8a:000a
+серийный номер: E6635898631D5D30
+порт: /dev/cu.usbmodem11301
+начало: 2026-11-05T19:19:05
+   0.000 --> enable
+   0.126 <-- enable
+   0.127 <-- dbg read_line:76 got cdenable
+   0.130 <-- err handle_command:53 unknown command: cdenable
+   2.143 --> disable
+   2.286 <-- disable
+   2.287 <-- dbg read_line:76 got disable
+   2.288 <-- inf handle_command:39 led off
+   4.305 --> info
+   4.387 <-- info
+   4.388 <-- dbg read_line:76 got info
+   4.388 <-- project: 211-command-usb
+   4.389 <-- repo: https://github.com/LilMaxem123/es-student
+   4.389 <-- board: pico
+   4.389 <-- serial: E6635898631D5D30
+   4.390 <-- chip: manufacturer 0x927, part 0x0002, revision 2
+   4.390 <-- pico-sdk: 2.3.0
+   6.408 --> nosuchcommand
+   6.690 <-- nosuchcommand
+   6.691 <-- dbg read_line:76 got nosuchcommand
+   6.692 <-- err handle_command:53 unknown command: nosuchcommand
+итог: отправлено команд 4, принято строк 17
